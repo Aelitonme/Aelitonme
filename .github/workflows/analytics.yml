@@ -1,0 +1,50 @@
+name: Generate GitHub analytics
+
+on:
+  schedule:
+    - cron: "20 3 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/generate_analytics.py"
+      - ".github/workflows/analytics.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  analytics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate analytics
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USERNAME: Aelitonme
+          OUTPUT_FILE: dist/github-analytics.svg
+        run: python3 scripts/generate_analytics.py
+
+      - name: Publish to gh-pages
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin gh-pages
+          rm -rf /tmp/aeliton-gh-pages
+          git worktree add /tmp/aeliton-gh-pages origin/gh-pages
+          cp dist/github-analytics.svg /tmp/aeliton-gh-pages/github-analytics.svg
+          cd /tmp/aeliton-gh-pages
+          git add github-analytics.svg
+          if git diff --cached --quiet; then
+            echo "Sem alterações."
+            exit 0
+          fi
+          git commit -m "chore: update GitHub analytics"
+          git push origin HEAD:gh-pages
