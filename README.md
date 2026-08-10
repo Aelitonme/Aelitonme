@@ -5,20 +5,17 @@
 
 <div align="center">
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&height=180&color=gradient&customColorList=6,12,20&text=Aeliton%20Alves&fontColor=ffffff&fontSize=42&fontAlignY=35&desc=Cybersecurity%20%7C%20Network%20Security%20%7C%20Python&descAlignY=58&animation=fadeIn"/>
+## 📊 GitHub Analytics
 
-<br>
-
-<a href="https://github.com/Aelitonme">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&duration=2800&pause=800&color=9745F5&center=true&vCenter=true&repeat=true&width=720&height=55&lines=%24+whoami;Cybersecurity+Student;Network+Security+Enthusiast;Python+Developer;Security+Monitoring;Learning+by+Building" alt="Typing SVG" />
-</a>
-
-<br>
-
-<img src="https://komarev.com/ghpvc/?username=Aelitonme&label=PROFILE+VIEWS&color=6f42c1&style=for-the-badge" alt="Profile Views"/>
+<img
+  src="https://raw.githubusercontent.com/Aelitonme/Aelitonme/gh-pages/github-analytics.svg"
+  alt="Aelitonme GitHub Analytics"
+  width="820"
+/>
 
 </div>
 
+> As porcentagens são calculadas automaticamente a partir das linguagens detectadas nos meus repositórios públicos e atualizadas via GitHub Actions.
 ---
 
 ## 🛡️ `whoami`
