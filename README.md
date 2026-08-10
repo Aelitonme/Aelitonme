@@ -265,9 +265,8 @@ Cybersecurity Roadmap
   <source media="(prefers-color-scheme: light)"
     srcset="https://raw.githubusercontent.com/Aelitonme/Aelitonme/gh-pages/github-contribution-grid-snake.svg"
     >
-  <img alt="GitHub contribution snake animation" 
-    
-src="https://raw.githubusercontent.com/Aelitonme/Aelitonme/output/github-contribution-grid-snake.svg"
+  <img alt="GitHub contribution snake animation"
+    src="https://raw.githubusercontent.com/Aelitonme/Aelitonme/gh-pages/github-contribution-grid-snake.svg"
     >
 </picture>
 
