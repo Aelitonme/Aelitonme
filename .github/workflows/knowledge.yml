@@ -1,0 +1,28 @@
+name: Generate knowledge dashboard
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["profile-data.yml", "scripts/generate_knowledge.py", ".github/workflows/knowledge.yml"]
+permissions:
+  contents: write
+jobs:
+  knowledge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - run: python3 scripts/generate_knowledge.py
+      - name: Publish
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin gh-pages
+          rm -rf /tmp/pages
+          git worktree add /tmp/pages origin/gh-pages
+          cp dist/knowledge.svg /tmp/pages/knowledge.svg
+          cd /tmp/pages
+          git add knowledge.svg
+          git diff --cached --quiet && exit 0
+          git commit -m "chore: update knowledge dashboard"
+          git push origin HEAD:gh-pages
