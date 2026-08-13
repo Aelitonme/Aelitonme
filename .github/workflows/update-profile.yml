@@ -1,0 +1,162 @@
+name: Update Dynamic Profile
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: "15 3 * * *"
+
+  push:
+    branches:
+      - main
+    paths:
+      - "profile-data.yml"
+      - "scripts/generate_analytics.py"
+      - "scripts/generate_knowledge.py"
+      - "scripts/generate_projects.py"
+      - ".github/workflows/update-profile.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dynamic-profile
+  cancel-in-progress: true
+
+jobs:
+  update-profile:
+    name: Generate profile assets
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      # ---------------------------------------------------------
+      # 1. Checkout
+      # ---------------------------------------------------------
+      - name: Checkout profile repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ---------------------------------------------------------
+      # 2. Analytics
+      # ---------------------------------------------------------
+      - name: Generate GitHub analytics
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USERNAME: Aelitonme
+          OUTPUT_FILE: dist/github-analytics.svg
+        run: |
+          mkdir -p dist
+          python3 scripts/generate_analytics.py
+
+      # ---------------------------------------------------------
+      # 3. Knowledge dashboard
+      # ---------------------------------------------------------
+      - name: Generate knowledge dashboard
+        run: |
+          python3 scripts/generate_knowledge.py
+
+      # ---------------------------------------------------------
+      # 4. Projects dashboard
+      # ---------------------------------------------------------
+      - name: Generate projects dashboard
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USERNAME: Aelitonme
+        run: |
+          python3 scripts/generate_projects.py
+
+      # ---------------------------------------------------------
+      # 5. Contribution Snake
+      # ---------------------------------------------------------
+      - name: Generate contribution snake
+        uses: Platane/snk@v3
+        with:
+          github_user_name: Aelitonme
+          outputs: |
+            dist/github-contribution-grid-snake.svg?color_snake=%239745F5&color_dots=%23110F18,%232A1745,%234B247A,%237A3DB8,%23B57BFF
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=%23B57BFF
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # ---------------------------------------------------------
+      # 6. Validation
+      # ---------------------------------------------------------
+      - name: Validate generated assets
+        shell: bash
+        run: |
+          set -e
+
+          echo "Generated files:"
+          ls -lah dist
+
+          required_files=(
+            "dist/github-analytics.svg"
+            "dist/knowledge.svg"
+            "dist/projects.svg"
+            "dist/github-contribution-grid-snake.svg"
+            "dist/github-contribution-grid-snake-dark.svg"
+          )
+
+          for file in "${required_files[@]}"; do
+            if [ ! -s "$file" ]; then
+              echo "ERROR: Missing or empty file: $file"
+              exit 1
+            fi
+          done
+
+          echo "All dynamic profile assets were generated successfully."
+
+      # ---------------------------------------------------------
+      # 7. Publish everything to gh-pages
+      # ---------------------------------------------------------
+      - name: Publish profile assets to gh-pages
+        shell: bash
+        run: |
+          set -e
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git fetch origin gh-pages
+
+          rm -rf /tmp/aeliton-profile-pages
+          git worktree add /tmp/aeliton-profile-pages origin/gh-pages
+
+          cp dist/github-analytics.svg /tmp/aeliton-profile-pages/github-analytics.svg
+          cp dist/knowledge.svg /tmp/aeliton-profile-pages/knowledge.svg
+          cp dist/projects.svg /tmp/aeliton-profile-pages/projects.svg
+          cp dist/github-contribution-grid-snake.svg /tmp/aeliton-profile-pages/github-contribution-grid-snake.svg
+          cp dist/github-contribution-grid-snake-dark.svg /tmp/aeliton-profile-pages/github-contribution-grid-snake-dark.svg
+
+          cd /tmp/aeliton-profile-pages
+
+          git add \
+            github-analytics.svg \
+            knowledge.svg \
+            projects.svg \
+            github-contribution-grid-snake.svg \
+            github-contribution-grid-snake-dark.svg
+
+          if git diff --cached --quiet; then
+            echo "No profile changes to publish."
+            exit 0
+          fi
+
+          git commit -m "chore: update dynamic GitHub profile"
+          git push origin HEAD:gh-pages
+
+      # ---------------------------------------------------------
+      # 8. Summary
+      # ---------------------------------------------------------
+      - name: Profile update summary
+        run: |
+          echo "============================================"
+          echo " Dynamic profile updated successfully"
+          echo "============================================"
+          echo "Analytics:  github-analytics.svg"
+          echo "Knowledge:  knowledge.svg"
+          echo "Projects:   projects.svg"
+          echo "Snake:      github-contribution-grid-snake.svg"
+          echo "Snake dark: github-contribution-grid-snake-dark.svg"
