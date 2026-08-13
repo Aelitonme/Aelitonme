@@ -1,0 +1,70 @@
+profile:
+  name: Aeliton Alves
+  username: Aelitonme
+  role: Cybersecurity Student
+  headline: Cybersecurity • Network Security • Python
+  bio: Estudante de Análise e Desenvolvimento de Sistemas com foco em Cybersecurity, Segurança de Redes e Python.
+  status: Learning & Building
+
+focus:
+  - Network Security
+  - Security Monitoring
+  - Python Automation
+  - Linux
+
+learning:
+  Networking:
+    OSI Model: learned
+    TCP/IP: learned
+    ARP: learned
+    ICMP: learned
+    DNS: learned
+    DHCP: learned
+    NAT: learned
+    Traceroute: learned
+  Web & Protocols:
+    HTTP: learned
+    HTTPS: learned
+    TLS: learned
+    Digital Certificates: learned
+  Traffic Analysis:
+    Wireshark: practicing
+    Packet Analysis: practicing
+  Security Monitoring:
+    SIEM Fundamentals: studying
+    Splunk: studying
+    Google Chronicle: studying
+  Security Tools:
+    Nmap: practicing
+    Burp Suite: studying
+    Linux: practicing
+    Python: practicing
+
+certifications:
+  - name: Google Cybersecurity Professional Certificate
+    issuer: Google
+    status: in_progress
+
+platforms:
+  - TryHackMe
+  - Hack The Box
+  - GitHub
+
+career:
+  objective: Construir uma carreira em Cybersecurity, desenvolvendo experiência prática em segurança de redes, monitoramento, análise de incidentes, SIEM, análise de tráfego e automação com Python.
+
+methodology:
+  - Aprender
+  - Praticar
+  - Documentar
+  - Construir
+  - Repetir
+
+settings:
+  show_analytics: true
+  show_knowledge: true
+  show_projects: true
+  show_streak: true
+  show_snake: true
+  show_certifications: true
+  show_platforms: true
