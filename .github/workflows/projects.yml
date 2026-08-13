@@ -1,0 +1,38 @@
+name: Generate projects dashboard
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "40 3 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  projects:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate projects dashboard
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USERNAME: Aelitonme
+        run: python3 scripts/generate_projects.py
+
+      - name: Publish to gh-pages
+        run: |
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin gh-pages
+          rm -rf /tmp/projects-pages
+          git worktree add /tmp/projects-pages origin/gh-pages
+          cp dist/projects.svg /tmp/projects-pages/projects.svg
+          cd /tmp/projects-pages
+          git add projects.svg
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore: update projects dashboard"
+          git push origin HEAD:gh-pages
