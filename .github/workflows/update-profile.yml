@@ -1,0 +1,96 @@
+name: Update Dynamic Profile
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 3 * * *"
+  push:
+    branches: [main]
+    paths:
+      - "profile-data.yml"
+      - "scripts/generate_analytics.py"
+      - "scripts/generate_knowledge.py"
+      - "scripts/generate_projects.py"
+      - "scripts/generate_readme.py"
+      - ".github/workflows/update-profile.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dynamic-profile
+  cancel-in-progress: true
+
+jobs:
+  update-profile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install YAML support
+        run: python3 -m pip install --disable-pip-version-check pyyaml
+
+      - name: Generate README
+        run: python3 scripts/generate_readme.py
+
+      - name: Generate analytics
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USERNAME: Aelitonme
+          OUTPUT_FILE: dist/github-analytics.svg
+        run: |
+          mkdir -p dist
+          python3 scripts/generate_analytics.py
+
+      - name: Generate knowledge
+        run: python3 scripts/generate_knowledge.py
+
+      - name: Generate projects
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USERNAME: Aelitonme
+        run: python3 scripts/generate_projects.py
+
+      - name: Generate snake
+        uses: Platane/snk@v3
+        with:
+          github_user_name: Aelitonme
+          outputs: |
+            dist/github-contribution-grid-snake.svg?color_snake=%239745F5&color_dots=%23110F18,%232A1745,%234B247A,%237A3DB8,%23B57BFF
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=%23B57BFF
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Validate assets
+        run: |
+          set -e
+          for f in dist/github-analytics.svg dist/knowledge.svg dist/projects.svg dist/github-contribution-grid-snake.svg dist/github-contribution-grid-snake-dark.svg; do
+            test -s "$f" || exit 1
+          done
+
+      - name: Commit generated README
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Readme.md
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: regenerate profile README [skip ci]"
+            git push origin HEAD:main
+          fi
+
+      - name: Publish assets to gh-pages
+        run: |
+          set -e
+          git fetch origin gh-pages
+          rm -rf /tmp/profile-pages
+          git worktree add /tmp/profile-pages origin/gh-pages
+          cp dist/*.svg /tmp/profile-pages/
+          cd /tmp/profile-pages
+          git add *.svg
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore: update dynamic profile assets"
+          git push origin HEAD:gh-pages
