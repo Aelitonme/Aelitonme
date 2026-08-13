@@ -47,8 +47,6 @@ Estudante de Análise e Desenvolvimento de Sistemas com foco em Cybersecurity, S
 
 </div>
 
-> Linguagens, porcentagens, repositórios, stars e forks são atualizados automaticamente.
-
 ---
 
 <div align="center">
@@ -59,8 +57,6 @@ Estudante de Análise e Desenvolvimento de Sistemas com foco em Cybersecurity, S
 
 </div>
 
-> Os status de aprendizado vêm diretamente do `profile-data.yml`.
-
 ---
 
 <div align="center">
@@ -70,8 +66,6 @@ Estudante de Análise e Desenvolvimento de Sistemas com foco em Cybersecurity, S
 <img src="https://raw.githubusercontent.com/Aelitonme/Aelitonme/gh-pages/projects.svg" alt="Projects Dashboard" width="820"/>
 
 </div>
-
-> Projetos e linguagens são detectados automaticamente nos repositórios públicos.
 
 ---
 
