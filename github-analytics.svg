@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="455" viewBox="0 0 820 455">
+    <defs>
+      <linearGradient id="bg"><stop stop-color="#0D1117"/><stop offset="1" stop-color="#161022"/></linearGradient>
+      <linearGradient id="accent"><stop stop-color="#7A3DB8"/><stop offset=".5" stop-color="#9745F5"/><stop offset="1" stop-color="#B57BFF"/></linearGradient>
+    </defs>
+    <style>
+      .title{font:700 24px Segoe UI,Arial;fill:#fff;letter-spacing:1px}
+      .sub,.label,.muted{font:500 12px Segoe UI,Arial;fill:#8B949E}
+      .num{font:700 26px Segoe UI,Arial;fill:#B57BFF}
+      .section{font:700 15px Segoe UI,Arial;fill:#fff}
+      .lang{font:600 13px Segoe UI,Arial;fill:#fff}
+      .pct{font:700 13px Segoe UI,Arial;fill:#B57BFF}
+    </style>
+    <rect x="1" y="1" width="818" height="453" rx="18" fill="url(#bg)" stroke="#2A1745" stroke-width="2"/>
+    <rect x="28" y="28" width="6" height="58" rx="3" fill="url(#accent)"/>
+    <text x="52" y="55" class="title">AELITONME // GITHUB ANALYTICS</text>
+    <text x="52" y="78" class="sub">Cybersecurity • Network Security • Python</text>
+    <line x1="52" y1="105" x2="768" y2="105" stroke="#252B36"/>
+    <text x="62" y="137" class="label">REPOSITÓRIOS</text><text x="62" y="170" class="num">5</text>
+    <text x="285" y="137" class="label">STARS</text><text x="285" y="170" class="num">0</text>
+    <text x="480" y="137" class="label">FORKS</text><text x="480" y="170" class="num">0</text>
+    <text x="650" y="137" class="label">CÓDIGO</text><text x="650" y="170" class="num">99.3K</text>
+    <text x="52" y="205" class="section">LANGUAGE DISTRIBUTION</text>
+    
+            <text x="52" y="243" class="lang">Python</text>
+            <rect x="205" y="230" rx="7" width="460" height="14" fill="#1B1F2A"/>
+            <rect x="205" y="230" rx="7" width="338.4" height="14" fill="#B57BFF">
+              <animate attributeName="width" from="0" to="338.4" dur="1.2s" fill="freeze"/>
+            </rect>
+            <text x="690" y="243" class="pct">73.6%</text>
+            
+            <text x="52" y="277" class="lang">CSS</text>
+            <rect x="205" y="264" rx="7" width="460" height="14" fill="#1B1F2A"/>
+            <rect x="205" y="264" rx="7" width="52.8" height="14" fill="#9745F5">
+              <animate attributeName="width" from="0" to="52.8" dur="1.2s" fill="freeze"/>
+            </rect>
+            <text x="690" y="277" class="pct">11.5%</text>
+            
+            <text x="52" y="311" class="lang">HTML</text>
+            <rect x="205" y="298" rx="7" width="460" height="14" fill="#1B1F2A"/>
+            <rect x="205" y="298" rx="7" width="49.4" height="14" fill="#7A3DB8">
+              <animate attributeName="width" from="0" to="49.4" dur="1.2s" fill="freeze"/>
+            </rect>
+            <text x="690" y="311" class="pct">10.7%</text>
+            
+            <text x="52" y="345" class="lang">JavaScript</text>
+            <rect x="205" y="332" rx="7" width="460" height="14" fill="#1B1F2A"/>
+            <rect x="205" y="332" rx="7" width="19.3" height="14" fill="#663399">
+              <animate attributeName="width" from="0" to="19.3" dur="1.2s" fill="freeze"/>
+            </rect>
+            <text x="690" y="345" class="pct">4.2%</text>
+            
+    <text x="52" y="427" class="sub">Atualizado automaticamente em 2026-09-05 07:40 UTC</text>
+    <circle cx="760" cy="423" r="5" fill="#9745F5">
+      <animate attributeName="opacity" values=".35;1;.35" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    </svg>
