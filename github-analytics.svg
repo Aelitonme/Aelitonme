@@ -50,7 +50,7 @@
             </rect>
             <text x="690" y="345" class="pct">4.2%</text>
             
-    <text x="52" y="427" class="sub">Atualizado automaticamente em 2026-09-12 07:55 UTC</text>
+    <text x="52" y="427" class="sub">Atualizado automaticamente em 2026-09-12 07:56 UTC</text>
     <circle cx="760" cy="423" r="5" fill="#9745F5">
       <animate attributeName="opacity" values=".35;1;.35" dur="2s" repeatCount="indefinite"/>
     </circle>
