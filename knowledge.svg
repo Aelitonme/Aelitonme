@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="977" viewBox="0 0 820 977">
+<style>
+.title{font:700 23px Arial;fill:white}
+.sub{font:12px Arial;fill:#8B949E}
+.cat{font:700 14px Arial;fill:#B57BFF}
+.item{font:13px Arial;fill:#F0F3F6}
+.status{font:700 11px Arial}
+</style>
+
+<rect width="820" height="977" rx="18"
+      fill="#0D1117" stroke="#2A1745" stroke-width="2"/>
+
+<rect x="28" y="28" width="6" height="58"
+      rx="3" fill="#9745F5"/>
+
+<text x="52" y="55" class="title">CYBERSECURITY KNOWLEDGE</text>
+
+<text x="52" y="78" class="sub">
+Learning dashboard • generated from profile-data.yml
+</text>
+
+<line x1="52" y1="104" x2="768" y2="104"
+      stroke="#252B36"/>
+
+<text x="52" y="135" class="cat">NETWORKING</text><text x="65" y="163" class="item">OSI Model</text><text x="545" y="163" class="status" fill="#B57BFF">✓ LEARNED</text><text x="65" y="190" class="item">TCP/IP</text><text x="545" y="190" class="status" fill="#B57BFF">✓ LEARNED</text><text x="65" y="217" class="item">ARP</text><text x="545" y="217" class="status" fill="#B57BFF">✓ LEARNED</text><text x="65" y="244" class="item">ICMP</text><text x="545" y="244" class="status" fill="#B57BFF">✓ LEARNED</text><text x="65" y="271" class="item">DNS</text><text x="545" y="271" class="status" fill="#B57BFF">✓ LEARNED</text><text x="65" y="298" class="item">DHCP</text><text x="545" y="298" class="status" fill="#B57BFF">✓ LEARNED</text><text x="65" y="325" class="item">NAT</text><text x="545" y="325" class="status" fill="#B57BFF">✓ LEARNED</text><text x="65" y="352" class="item">Traceroute</text><text x="545" y="352" class="status" fill="#B57BFF">✓ LEARNED</text><text x="52" y="397" class="cat">WEB &amp; PROTOCOLS</text><text x="65" y="425" class="item">HTTP</text><text x="545" y="425" class="status" fill="#B57BFF">✓ LEARNED</text><text x="65" y="452" class="item">HTTPS</text><text x="545" y="452" class="status" fill="#B57BFF">✓ LEARNED</text><text x="65" y="479" class="item">TLS</text><text x="545" y="479" class="status" fill="#B57BFF">✓ LEARNED</text><text x="65" y="506" class="item">Digital Certificates</text><text x="545" y="506" class="status" fill="#B57BFF">✓ LEARNED</text><text x="52" y="551" class="cat">TRAFFIC ANALYSIS</text><text x="65" y="579" class="item">Wireshark</text><text x="545" y="579" class="status" fill="#9745F5">◉ PRACTICING</text><text x="65" y="606" class="item">Packet Analysis</text><text x="545" y="606" class="status" fill="#9745F5">◉ PRACTICING</text><text x="52" y="651" class="cat">SECURITY MONITORING</text><text x="65" y="679" class="item">SIEM Fundamentals</text><text x="545" y="679" class="status" fill="#7A3DB8">● STUDYING</text><text x="65" y="706" class="item">Splunk</text><text x="545" y="706" class="status" fill="#7A3DB8">● STUDYING</text><text x="65" y="733" class="item">Google Chronicle</text><text x="545" y="733" class="status" fill="#7A3DB8">● STUDYING</text><text x="52" y="778" class="cat">SECURITY TOOLS</text><text x="65" y="806" class="item">Nmap</text><text x="545" y="806" class="status" fill="#9745F5">◉ PRACTICING</text><text x="65" y="833" class="item">Burp Suite</text><text x="545" y="833" class="status" fill="#7A3DB8">● STUDYING</text><text x="65" y="860" class="item">Linux</text><text x="545" y="860" class="status" fill="#9745F5">◉ PRACTICING</text><text x="65" y="887" class="item">Python</text><text x="545" y="887" class="status" fill="#9745F5">◉ PRACTICING</text>
+
+<text x="52" y="951" class="sub">
+✓ learned   ◉ practicing   ● studying   → next
+</text>
+
+<circle cx="760" cy="947" r="5" fill="#9745F5">
+  <animate
+    attributeName="opacity"
+    values=".3;1;.3"
+    dur="2s"
+    repeatCount="indefinite"
+  />
+</circle>
+
+</svg>
